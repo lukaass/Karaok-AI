@@ -1,0 +1,6 @@
+{
+  "name": "Criador de Karaokê AI",
+  "description": "Crie vídeos de karaokê personalizados alinhando letras com IA e exportando o resultado final.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
