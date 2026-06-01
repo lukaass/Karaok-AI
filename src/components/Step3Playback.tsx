@@ -28,6 +28,7 @@ export default function Step3Playback({ project, updateProject, onPrev, onNext }
   // Playback drag state
   const [playbackDragActive, setPlaybackDragActive] = useState(false);
   const [highlightMode, setHighlightMode] = useState<"progressive" | "simple">(project.highlightMode || "progressive");
+  const [lyricFontSize, setLyricFontSize] = useState<number>(project.lyricFontSize || 34);
 
   // Playback upload
   const handlePlaybackUpload = (file: File) => {
@@ -109,6 +110,7 @@ export default function Step3Playback({ project, updateProject, onPrev, onNext }
       bgType,
       bgValue,
       highlightMode,
+      lyricFontSize,
     });
     onNext();
   };
@@ -377,6 +379,27 @@ export default function Step3Playback({ project, updateProject, onPrev, onNext }
           </div>
         </div>
 
+        {/* Passo 4: Tamanho da Fonte da Letra */}
+        <div className="flex flex-col gap-3 mt-4 border-t border-slate-800/80 pt-5">
+          <label className="block text-xs font-mono text-slate-450 uppercase tracking-wider font-bold">Passo 4: Tamanho da Fonte da Letra</label>
+          <div className="flex items-center gap-4 bg-slate-950/40 p-4 rounded-xl border border-slate-800">
+            <span className="text-xs font-medium text-slate-400 shrink-0">Pequeno (24px)</span>
+            <input
+              type="range"
+              min="24"
+              max="54"
+              step="1"
+              value={lyricFontSize}
+              onChange={(e) => setLyricFontSize(parseInt(e.target.value))}
+              className="flex-1 h-1.5 bg-slate-850 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+            />
+            <span className="text-xs font-medium text-slate-400 shrink-0">Grande (54px)</span>
+            <span className="text-xs font-mono font-bold text-indigo-400 bg-indigo-950/45 px-2.5 py-1 rounded-lg border border-indigo-900/30 shrink-0">
+              {lyricFontSize}px
+            </span>
+          </div>
+        </div>
+
       </div>
 
       {/* Coluna Direita: Prévia do Estilo de Imagem */}
@@ -410,7 +433,10 @@ export default function Step3Playback({ project, updateProject, onPrev, onNext }
               
               <div className="flex flex-col items-center mt-3.5">
                 {highlightMode === "progressive" ? (
-                  <div className="relative inline-block text-xl font-sans font-black text-white px-2 tracking-tight leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] whitespace-nowrap">
+                  <div 
+                    style={{ fontSize: `${Math.round(lyricFontSize * 0.6)}px` }}
+                    className="relative inline-block font-sans font-black text-white px-2 tracking-tight leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] whitespace-nowrap"
+                  >
                     {/* Background white text */}
                     <span className="opacity-40">Olha que coisa mais linda</span>
                     {/* Golden progress overlay */}
@@ -419,12 +445,18 @@ export default function Step3Playback({ project, updateProject, onPrev, onNext }
                     </div>
                   </div>
                 ) : (
-                  <p className="text-xl font-sans font-black text-yellow-400 tracking-tight leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                  <p 
+                    style={{ fontSize: `${Math.round(lyricFontSize * 0.6)}px` }}
+                    className="font-sans font-black text-yellow-400 tracking-tight leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
+                  >
                     Olha que coisa mais linda
                   </p>
                 )}
                 
-                <p className="text-sm font-sans font-medium text-slate-400 opacity-60 leading-normal drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] mt-1.5">
+                <p 
+                  style={{ fontSize: `${Math.round(lyricFontSize * 0.6 * 0.65)}px` }}
+                  className="font-sans font-medium text-slate-400 opacity-60 leading-normal drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] mt-1.5"
+                >
                   Mais cheia de graça
                 </p>
               </div>

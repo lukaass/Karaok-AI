@@ -19,6 +19,7 @@ const INITIAL_PROJECT: KaraokeProject = {
   bgType: "gradient",
   bgValue: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%)",
   highlightMode: "progressive",
+  lyricFontSize: 34,
   videoExportedUrl: null,
 };
 

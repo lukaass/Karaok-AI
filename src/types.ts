@@ -17,6 +17,7 @@ export interface KaraokeProject {
   bgType: "gradient" | "custom" | "ai";
   bgValue: string; // CSS gradient class or background Image URL (Base64/external)
   highlightMode?: "progressive" | "simple";
+  lyricFontSize?: number;
   videoExportedUrl: string | null;
 }
 
